@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+           justify-content: center;
+        }
+        #left ,#right{
+            display: flex;
+            border: 2px solid black;
+            padding: 20px;
+            flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 100px;
+width: 200px;
+        }
+        
+       
+        .list{
+           
+            background-color:pink;
+            margin: 20px;
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="left">
+<div class="list" draggable="true">Item 1</div>
+<div class="list" draggable="true">Item 2</div>
+<div class="list" draggable="true">Item 3</div>
+<div class="list" draggable="true">Item 4</div>
+<div class="list" draggable="true">Item 5</div>
+<div class="list" draggable="true">Item 6</div>
+        </div>
+        <div id="right">
+
+        </div>
+    </div>
+    <script>
+const lists=document.getElementsByClassName("list")
+const rightbox=document.getElementById("right")
+const leftbox=document.getElementById("left")
+let selected=null;
+console.log(selected)
+for(let list of lists){
+    list.addEventListener("dragstart",function(e){
+        console.log(e)
+        selected=e.target;
+        console.log(e.target);
+        console.log(selected);
+    }
+)
+}
+rightbox.addEventListener("dragover",function(e){
+    e.preventDefault();
+    console.log(e.preventDefault);
+});
+rightbox.addEventListener("drop",function(e){
+    if(selected)
+{
+    rightbox.appendChild(selected)
+    selected=null;
+}
+});
+leftbox.addEventListener("dragover",function(e){
+    e.preventDefault();
+    console.log(e.preventDefault);
+});
+leftbox.addEventListener("drop",function(e){
+    if(selected)
+{
+    leftbox.appendChild(selected)
+    selected=null;
+}
+});
+    </script>
+</body>
+</html>
